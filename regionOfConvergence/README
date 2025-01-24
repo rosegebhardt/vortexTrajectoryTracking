@@ -1,0 +1,7 @@
+convergencePlots.m: Script to generate heatmaps from .mat files
+rocPlot_000deg_4foils.mat: In-phase closed-loop results without deadband applied
+rocPlot_000deg_4foils_deadband.mat: In-phase closed-loop results with deadband applied
+rocPlot_000deg_4foils_openLoop.mat: In-phase open-loop results
+rocPlot_180deg_4foils.mat: Out-of-phase closed-loop results without deadband applied
+rocPlot_180deg_4foils_deadband.mat: Out-of-phase closed-loop results with deadband applied
+rocPlot_180deg_4foils_openLoop.mat: Out-of-phase open-loop results
