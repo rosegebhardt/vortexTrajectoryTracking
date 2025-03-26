@@ -37,10 +37,6 @@ for ii = 1:timeN
     rDot(ii,:) = vortexConvection(timeSpan(ii),r(ii,:),phi_ref).';
 end
 
-% % TEMP (if we want a straight line)
-% r = [r_0(1) + u0*timeSpan',r_0(2)*ones(timeN,1)];
-% rDot = [u0*ones(timeN,1),zeros(timeN,1)];
-
 % Initialize tracking errors
 e = zeros(timeN,2);
 e(1,:) = z_0 - r_0; 
@@ -175,7 +171,7 @@ legend('Open-Loop Trajectory','Closed-Loop with Deadband','Closed-Loop without D
 ylim([0,0.35]);
 
 ax = gca; ax.GridColor = 'black'; ax.FontSize = 12; grid on; 
-ax.YLabel.FontSize = 18; ax.YLabel.Interpreter = 'latex'; 
+ax.YLabel.FontSize = 20; ax.YLabel.Interpreter = 'latex'; 
 ax.Legend.FontSize = 16; ax.Legend.Interpreter = 'latex'; ax.Legend.Location = 'northwest';
 
 % Plot control inputs against time
@@ -190,7 +186,7 @@ ylabel('Control Input');
 legend('','','','','Saturation Limits')
 ylim([-1.2*phaseRateLimit,1.2*phaseRateLimit])
 ax = gca; ax.GridColor = 'black'; ax.FontSize = 12; grid on; box on;
-ax.YLabel.FontSize = 18; ax.YLabel.Interpreter = 'latex'; 
+ax.YLabel.FontSize = 20; ax.YLabel.Interpreter = 'latex'; 
 ax.Legend.FontSize = 16; ax.Legend.Interpreter = 'latex'; ax.Legend.Location = 'northwest';
 
 % Plot camber against time
@@ -204,8 +200,8 @@ plot(timeSpan,A*cos(omega*timeSpan+state_cl(:,3).'),'-b','Linewidth',2);
 xlabel('Time (sec)'); ylabel('Camber Parameter');
        
 ax = gca; ax.GridColor = 'black'; ax.FontSize = 12; grid on; 
-ax.XLabel.FontSize = 18; ax.XLabel.Interpreter = 'latex'; 
-ax.YLabel.FontSize = 18; ax.YLabel.Interpreter = 'latex'; 
+ax.XLabel.FontSize = 20; ax.XLabel.Interpreter = 'latex'; 
+ax.YLabel.FontSize = 20; ax.YLabel.Interpreter = 'latex'; 
 
 %% Optimal Phase Compuation Results
 
@@ -336,7 +332,7 @@ for ii = timeN %1:everyNthTime:201
     angle = linspace(0,2*pi,1000);
     circleOL = r0*(exp(1i*angle) + deltaOL + 1i*betaOL); 
     foilOL = circleOL + kOL^2./circleOL;
-    % fill(real(foilOL)/fishLength,imag(foilOL)/fishLength,'r'); hold on; % for video
+%     fill(real(foilOL)/fishLength,imag(foilOL)/fishLength,'r'); hold on; % for video
        
     % Camber thickness and transform parameters
     beta = A*cos(omega*timeSpan(ii)+state_cl(ii,3)); beta = 0.1;
@@ -347,7 +343,7 @@ for ii = timeN %1:everyNthTime:201
     % Show foil profile
     circle = r0*exp(1i*angle) + zeta_0; 
     foil = circle + k^2./circle; 
-    % fill(real(foil)/fishLength,imag(foil)/fishLength,'b'); hold on; % for video
+%     fill(real(foil)/fishLength,imag(foil)/fishLength,'b'); hold on; % for video
     fill(real(foil)/fishLength,imag(foil)/fishLength,'k'); hold on; % for image
     
     % Show start and end of averaging
@@ -365,12 +361,10 @@ for ii = timeN %1:everyNthTime:201
     % Labels and graph parameters
     olLegend = ['Open-Loop Trajectory: $\phi = ',num2str(phi_0),'$'];
     deLegend = ['Desired Trajectory: $\phi = ',num2str(phi_ref),'$'];
-    % legend('Open-Loop Fish','Closed-Loop Fish','Open-Loop Trajectory',...
-           % 'Closed-Loop Trajectory','Desired Trajectory'); % for video
+%     legend('Open-Loop Fish','Closed-Loop Fish','Open-Loop Trajectory',...
+%            'Closed-Loop Trajectory','Desired Trajectory'); % for video
     legend('','Metric Evalutation Window','Open-Loop Trajectory','Closed-Loop with Deadband',...
            'Closed-Loop without Deadband','Desired Trajectory') % for image
-%     legend('','Metric Evalutation Window','Open-Loop','Deadband',...
-%            'Closed-Loop','Desired') % for image
     axis equal; xlim([-4,4]); ylim([-1,1]);
     
     xlabel('$z_1$ (Foil Lengths)','interpreter','latex'); 
@@ -378,6 +372,8 @@ for ii = timeN %1:everyNthTime:201
     ax = gca; ax.FontSize = 12;
     ax.XLabel.FontSize = 28; ax.YLabel.FontSize = 28;
     ax.Legend.FontSize = 20; ax.Legend.Interpreter = 'latex'; ax.Legend.Location = 'northwest';
+%     ax.XLabel.FontSize = 32; ax.YLabel.FontSize = 32;
+%     ax.Legend.FontSize = 24; ax.Legend.Interpreter = 'latex'; ax.Legend.Location = 'northwest';
     hold off;
     
 %     % Store plot
@@ -400,7 +396,7 @@ end
 % 
 % close(writerObj);
 
-%% Show convergence  metric
+%% Show convergence metric
 
 parameters;
 
